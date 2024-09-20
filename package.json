@@ -1,0 +1,25 @@
+{
+  "description": "project that does CRUD operations using mongo for save contact information",
+  "name": "contact-project",
+  "version": "0.0.1",
+  "main": "server.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "keywords": [
+    "mongo",
+    "node",
+    "express",
+    "backend"
+  ],
+  "author": "Anderson Gil",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "mongodb": "^6.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.6"
+  }
+}
