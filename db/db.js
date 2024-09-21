@@ -32,10 +32,8 @@ const closeDb = () => {
   }
 };
 
-const getContactCollection = async () => {
-  return await this.getDb()
-    .db("sample_airbnb")
-    .collection("listingsAndReviews");
+const getContactCollection = () => {
+  return this.getDb().db("sample_airbnb").collection("listingsAndReviews");
 };
 
 module.exports = {
