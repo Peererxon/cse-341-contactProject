@@ -9,8 +9,8 @@ const getContacts = async (req, res) => {
     .find();
   result.toArray().then((contacts) => {
     console.log(contacts);
+    res.send("Get all contacts");
   });
-  res.send("Get all contacts");
 };
 
 const getContactById = (req, res) => {
