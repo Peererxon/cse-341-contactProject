@@ -1,5 +1,6 @@
 const mongodb = require("../db/db");
 const { ObjectId } = require("mongodb");
+
 const getContacts = async (req, res) => {
   // Logic to get all contacts
   const result = await mongodb
@@ -15,7 +16,8 @@ const getContacts = async (req, res) => {
 
 const getContactById = async (req, res) => {
   const { id } = req.params;
-  let query = { _id: ObjectId(id) };
+  const userId = new ObjectId.createFromHexString(id);
+  let query = { _id: userId };
   try {
     let result = await mongodb.getContactCollection.findOne(query);
     res.send(result).status(200).json();
