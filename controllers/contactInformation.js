@@ -2,12 +2,14 @@ const mongodb = require("../db/db");
 
 const getContacts = async (req, res) => {
   // Logic to get all contacts
-  const contacts = await mongodb
+  const result = await mongodb
     .getDb()
     .db("sample_airbnb")
     .collection("listingsAndReviews")
     .find();
-  console.log(contacts);
+  result.toArray().then((contacts) => {
+    console.log(contacts);
+  });
   res.send("Get all contacts");
 };
 
