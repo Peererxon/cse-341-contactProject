@@ -26,7 +26,21 @@ const getDb = () => {
   return _db;
 };
 
+const closeDb = () => {
+  if (_db) {
+    _db.close();
+  }
+};
+
+const getContactCollection = async () => {
+  return await this.getDb()
+    .db("sample_airbnb")
+    .collection("listingsAndReviews");
+};
+
 module.exports = {
   initDb,
   getDb,
+  getContactCollection,
+  closeDb,
 };
