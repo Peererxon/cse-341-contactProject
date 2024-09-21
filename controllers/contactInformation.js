@@ -18,8 +18,13 @@ const getContactById = async (req, res) => {
   const { id } = req.params;
   const userId = ObjectId.createFromHexString(id);
   let query = { _id: userId };
+  console.log("🚀 ~ getContactById ~ userId:", userId);
   try {
-    let result = await mongodb.getContactCollection.findOne(query);
+    const result = await mongodb
+      .getDb()
+      .db("Contact_Informations")
+      .collection("Contacts")
+      .findOne(query);
     res.send(result).status(200).json();
   } catch (error) {
     console.log(error);
