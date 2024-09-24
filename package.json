@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "nodemon server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "lint": "npx eslint . --ext .js"
   },
   "keywords": [
     "mongo",
@@ -22,6 +23,15 @@
     "mongodb": "^6.9.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.6"
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "nodemon": "^3.1.6",
+    "prettier": "^3.3.3",
+    "swagger-autogen": "^2.23.7"
   }
 }

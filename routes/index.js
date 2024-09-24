@@ -2,7 +2,6 @@ const express = require("express");
 const {
   contactInformationController,
 } = require("../controllers/contactInformation");
-
 const router = express.Router();
 
 router.get("/", (req, res) => {

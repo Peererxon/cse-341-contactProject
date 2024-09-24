@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
-dotenv.config();
 const MongoClient = require("mongodb").MongoClient;
+
+dotenv.config();
 
 let _db;
 
@@ -32,9 +33,8 @@ const closeDb = () => {
   }
 };
 
-const getContactCollection = () => {
-  return this.getDb().db("sample_airbnb").collection("listingsAndReviews");
-};
+const getContactCollection = () =>
+  this.getDb().db("sample_airbnb").collection("listingsAndReviews");
 
 module.exports = {
   initDb,
