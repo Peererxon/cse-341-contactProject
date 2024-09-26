@@ -1,0 +1,281 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger Contactstore - OpenAPI 3.0",
+    "description": "Backend API for CRUD of contacts information based on the OpenAPI 3.0 specification.",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "andersongil@swagger.io"
+    },
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "servers": [
+    {
+      "url": "https://cse-341-contactproject.onrender.com"
+    },
+    {
+      "url": "http://localhost:3000/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "contact",
+      "description": "View, update, delete or load information about your contacts"
+    }
+  ],
+  "paths": {
+    "/contacts": {
+      "get": {
+        "tags": ["contact"],
+        "summary": "Get all contacts",
+        "description": "Returns all contacts",
+        "operationId": "getAllContacts",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contact"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      },
+      "post": {
+        "tags": ["contact"],
+        "summary": "Add a new contact to the store",
+        "description": "Add a new contact to the store",
+        "operationId": "addContact",
+        "requestBody": {
+          "description": "Create a new contact in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contact"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Contact created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Error creating contact"
+          }
+        }
+      }
+    },
+    "/contact/{contactId}": {
+      "get": {
+        "tags": ["contact"],
+        "summary": "Find contact by ID",
+        "description": "Returns a single contact",
+        "operationId": "getContactById",
+        "parameters": [
+          {
+            "name": "contactId",
+            "in": "path",
+            "description": "ID of contact to return",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "objectId"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Contact not found"
+          }
+        }
+      },
+      "put": {
+        "tags": ["contact"],
+        "summary": "Update an existing contact",
+        "description": "Update an existing contact by Id",
+        "operationId": "updateContact",
+        "parameters": [
+          {
+            "name": "contactId",
+            "in": "path",
+            "description": "Contact id to delete",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "objectId"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Update an existent contact in the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contact"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Contact updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Contact not found"
+          },
+          "500": {
+            "description": "Error updating contact"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["contact"],
+        "summary": "Deletes a contact",
+        "description": "Delete a contact",
+        "operationId": "deleteContact",
+        "parameters": [
+          {
+            "name": "contactId",
+            "in": "path",
+            "description": "Contact id to delete",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "objectId"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Contact deleted"
+          },
+          "422": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Contact not found"
+          },
+          "500": {
+            "description": "Error deleting contact"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "example": "Doe"
+          },
+          "email": {
+            "type": "string",
+            "example": "jonhDoe@does.com"
+          },
+          "phone": {
+            "type": "string",
+            "example": "1234567890"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "favoriteColor": {
+            "type": "string",
+            "example": "blue"
+          },
+          "birthday": {
+            "type": "string",
+            "format": "date",
+            "example": "2000-01-01"
+          },
+          "note": {
+            "type": "string",
+            "example": "Meet him in the central park cousing party"
+          }
+        },
+        "xml": {
+          "name": "contact"
+        }
+      },
+      "Address": {
+        "type": "object",
+        "properties": {
+          "street": {
+            "type": "string",
+            "example": "1234 Main St"
+          },
+          "city": {
+            "type": "string",
+            "example": "Springfield"
+          },
+          "state": {
+            "type": "string",
+            "example": "IL"
+          },
+          "zip": {
+            "type": "string",
+            "example": "62701"
+          }
+        },
+        "xml": {
+          "name": "address"
+        }
+      }
+    }
+  }
+}

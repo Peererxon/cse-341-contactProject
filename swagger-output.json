@@ -11,16 +11,6 @@
     "http"
   ],
   "paths": {
-    "/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/contacts": {
       "post": {
         "description": "",
@@ -64,6 +54,18 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -83,8 +85,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "default": {
+            "description": ""
           }
         }
       }
