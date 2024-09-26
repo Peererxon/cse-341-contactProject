@@ -1,6 +1,6 @@
 class HttpResponses {
-  static success(res, data, message) {
-    return res.status(200).json({
+  static success(res, data, message, status = 200) {
+    return res.status(status).json({
       success: true,
       data,
       message,

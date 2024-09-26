@@ -10,19 +10,19 @@ class ApiMessages {
   }
 
   static contactCreated(res, data) {
-    return HttpResponses.success(res, data, `Contact created`);
+    return HttpResponses.success(res, data, `Contact created`, 201);
   }
 
   static contactUpdated(res, data) {
     return HttpResponses.success(res, data, "Contact updated");
   }
 
-  static contactDeleted(res, data) {
-    return HttpResponses.success(res, data, "Contact deleted");
+  static contactDeleted(res) {
+    return HttpResponses.success(res, "Contact deleted", 204);
   }
 
   static FailureDeletingContact(res) {
-    return HttpResponses.error(res, "Contact not found", 404);
+    return HttpResponses.error(res, "Contact not found, user not deleted", 404);
   }
 }
 
