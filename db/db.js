@@ -34,7 +34,7 @@ const closeDb = () => {
 };
 
 const getContactCollection = () =>
-  this.getDb().db("sample_airbnb").collection("listingsAndReviews");
+  getDb().db("Contact_Informations").collection("Contacts");
 
 module.exports = {
   initDb,
