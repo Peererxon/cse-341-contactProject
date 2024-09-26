@@ -4,10 +4,6 @@ const {
 } = require("../controllers/contactInformation");
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
 // Create a new contact
 router.post("/contacts", contactInformationController.createContact);
 
