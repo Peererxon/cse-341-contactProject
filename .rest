@@ -1,1 +1,33 @@
 GET https://cse-341-contactproject.onrender.com/contacts/66eec75402b88f181dc824ad
+Content-Type: application/json
+
+// delete contact endpoint RENDER server
+DELETE https://cse-341-contactproject.onrender.com/contacts/66eec75402b88f181dc824ad
+
+//locahost edpoints
+GET http://localhost:3000/contacts
+
+POST http://localhost:3000/contacts
+content-type: application/json
+
+{
+    "firstName": "Miguel",
+    "lastName": "Mendoza",
+    "email": "mendoz@zandome.com",
+    "phone": "+584161506877",
+    "address": {
+      "street": "1234 Main St",
+      "city": "Springfield",
+      "state": "IL",
+      "zip": "62701"
+    },
+    "favoriteColor": "orange",
+    "birthday": "07/08/1998",
+    "note": "Friend and coworker"
+}
+
+GET http://localhost:3000/contacts/66eec75402b88f181dc824ad
+
+PUT http://localhost:3000/contacts/66eec75402b88f181dc824ad
+
+DELETE http://localhost:3000/contacts/66f56a071baa80c1020e83b3
