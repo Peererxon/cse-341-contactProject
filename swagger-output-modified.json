@@ -89,7 +89,7 @@
         }
       }
     },
-    "/contact/{contactId}": {
+    "/contacts/{contactId}": {
       "get": {
         "tags": ["contact"],
         "summary": "Find contact by ID",
