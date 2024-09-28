@@ -52,7 +52,6 @@ const createContact = (req, res) => {
     console.log(error);
     res.send("Error creating contact").status(500);
   }
-  res.send("Create a new contact");
 };
 
 const updateContact = async (req, res) => {
