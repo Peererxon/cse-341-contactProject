@@ -10,16 +10,17 @@ const mongodb = require("./db/db");
 const port = 3000;
 const app = express();
 
-app.use(bodyParser.json()).use((req, res, next) => {
+app.use(bodyParser.json());
+app.use(cors());
+app.use("/", routes);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use((req, res, next) => {
   if (res.headersSent) {
     console.log("Headers already sent");
     return next();
   }
   next();
 });
-app.use(cors());
-app.use("/", routes);
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 mongodb.initDb((err) => {
   if (err) {

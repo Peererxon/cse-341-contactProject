@@ -12,7 +12,8 @@ const getContacts = async (req, res) => {
   const result = await mongodb.getContactCollection().find();
   result.toArray().then((contacts) => {
     console.log(contacts);
-    res.send(contacts).status(200).json();
+    // res.send(contacts).status(200).json();
+    ApiMessages.contactsFound(res, contacts);
   });
 };
 
@@ -31,26 +32,30 @@ const getContactById = async (req, res) => {
     const result = await mongodb.getContactCollection().findOne(query);
     console.log("🚀 ~ getContactById AFTER mongo request~ result:", result);
     if (!result) {
-      res.send("Contact not found").status(404);
+      // res.send("Contact not found").status(404);
+      ApiMessages.contactNotFound(res);
       return;
     }
-    res.send(result).status(200).json();
+    // res.send(result).status(200).json();
+    ApiMessages.contactFound(res, result);
   } catch (error) {
     console.log(error);
-    res.send("Contact not found").status(404);
+    // res.send("Contact not found").status(404);
+    ApiMessages.contactNotFound(res);
   }
   // Logic to get a contact by ID
 };
 
-const createContact = (req, res) => {
+const createContact = async (req, res) => {
   const newContact = req.body;
   // Logic to create a new contact
   try {
     mongodb.getContactCollection().insertOne(newContact);
-    ApiMessages.contactCreated(res, newContact);
+    await ApiMessages.contactCreated(res, newContact);
   } catch (error) {
     console.log(error);
-    res.send("Error creating contact").status(500);
+    // res.send("Error creating contact").status(500);
+    ApiMessages.createContactError(res);
   }
 };
 
@@ -74,14 +79,16 @@ const updateContact = async (req, res) => {
       .updateOne(query, { $set: updatedContact });
     console.log("🚀 ~ updateContact ~ result:", result);
     if (result.modifiedCount === 0) {
-      res.send("Contact not found").status(404);
+      // res.send("Contact not found").status(404);
+      ApiMessages.contactNotFound(res);
       return;
     }
 
     ApiMessages.contactUpdated(res, updatedContact);
   } catch (error) {
     console.log(error);
-    res.send("Error updating contact").status(500);
+    // res.send("Error updating contact").status(500);
+    ApiMessages.updateContactError(res);
   }
 };
 
